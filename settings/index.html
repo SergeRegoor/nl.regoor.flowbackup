@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="FileSaver.js"></script>
+		<script type="text/javascript" src="jszip.min.js"></script>
+		<script type="text/javascript" src="settings.js"></script>
+ 		<link type="text/css" rel="stylesheet" href="styles.css" media="screen" />
+   </head>
+    <body>
+    	<h1 data-i18n="title"></h1>
+    	<fieldset id="fieldSetWarning">
+    		<legend data-i18n="warning.title"></legend>
+    		<button data-i18n="warning.readMore"></button>
+    		<span data-i18n="warning.shortText"></span>
+    	</fieldset>
+    	<fieldset id="fieldSetBearerToken">
+    		<legend data-i18n="bearerToken.title"></legend>
+    		<input type="text" id="textBearerToken" value="" />
+    		<button id="buttonSaveBearerToken" data-i18n="bearerToken.saveButton"></button>
+    		<div id="bearerTokenExplanation">
+    			<span data-i18n="bearerToken.intro"></span>
+    			<ol>
+    				<li data-i18n="bearerToken.line1"></li>
+    				<li data-i18n="bearerToken.line2"></li>
+    				<li data-i18n="bearerToken.line3"></li>
+    				<li data-i18n="bearerToken.line4"></li>
+    			</ol>
+    			<p>
+    				<strong data-i18n="bearerToken.noteTitle"></strong><br/>
+    				<span data-i18n="bearerToken.note"></span>
+    			</p>
+    		</div>
+    	</fieldset>
+    	<br class="clear" />
+    	
+    	<button id="buttonBackupAllFlows" data-i18n="backupAllFlowsButton"></button>
+    	<button id="buttonRestoreFlows" data-i18n="restoreFlowsButton"></button>
+    	
+    	<div id="restoreContainer">
+    		<h2 data-i18n="restore.title"></h2>
+	    	<div id="restoreList"></div>
+    		<button id="cancelRestoreButton" data-i18n="restore.cancelButton"></button>
+    		<button id="performRestoreButton" data-i18n="restore.restoreButton"></button>
+    	</div>
+    	
+    	<div id="warningMessages">
+    		<p style="font-weight:bold;" data-i18n="warning.longText.line1"></p>
+    		<p data-i18n="warning.longText.line2"></p>
+    		<p data-i18n="warning.longText.line3"></p>
+    		<p data-i18n="warning.longText.line4"></p>
+    		<p data-i18n="warning.longText.line5" style="font-weight:bold;"></p>
+    	</div>
+    </body>
+</html>

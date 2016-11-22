@@ -1,0 +1,62 @@
+{
+	"title": "Flow back-ups",
+	
+	"warning": {
+		"title": "Warning",
+		"readMore": "Read more",
+		"shortText": "Using this app is at your own risk.",
+		"longText": {
+			"line1": "Using this app is at your own risk.",
+			"line2": "While backing up your flows pose virtually no risk, restoring flows do.",
+			"line3": "The author of this app does not offer any support when your flows get corrupted.",
+			"line4": "This app cannot access your devices. When you restore a flow, missing and/or re-added devices lead to broken flows.",
+			"line5": "Athom does not support the method of these backups."
+		}
+	},
+	
+	"bearerToken": {
+		"title": "Bearer token",
+		"saveButton": "Save",
+		"intro": "To retrieve your bearer token, follow these steps:",
+		"line1": "Click on the 'My account' button in the menu which appears when you hover over your name in the top right of this screen.",
+		"line2": "Right-click on your Homey, and select the option 'Copy link address'.",
+		"line3": "Click in the 'Bearer token' field above, and paste the copied address by pressing CTRL-V.",
+		"line4": "Click the 'Save' button.",
+		"noteTitle": "Please note",
+		"note": "If you save an invalid bearer token, you will be logged out of your Homey. You will then need to re-login again.",
+		"enterTokenFirst": "Please enter your bearer token first."
+	},
+	
+	"close": "Close",
+	"backupAllFlowsButton": "Back-up all flows",
+	"restoreFlowsButton": "Restore flows",
+	"retrievalError": "Error retrieving flows. Have you configured your bearer token correctly?",
+	
+	"restore": {
+		"title": "Select the flows from your backup to restore",
+		"cancelButton": "Cancel",
+		"restoreButton": "Restore",
+		"readError": "Could not load flows from your file. Please try again.",
+		"noFlowsToRestoreError": "You have not selected any flows to restore.",
+		"confirmRestorePart1": "Are you sure you want to ",
+		"confirmRestoreCreate": "create [quantity] [flows]",
+		"confirmRestoreAnd": ", and ",
+		"confirmRestoreOverwrite": "overwrite [quantity] [flows]",
+		"confirmRestorePart2": "?",
+		"confirmRestoreFlows": "flows",
+		"confirmRestoreFlow": "flow",
+		"createError": "Error creating [quantity] new flows for copies. No flows have been restored.",
+		"restoreErrorQty": "[quantity] flows could not be restored. Please review your flows carefully.",
+		"restoreError": "Error restoring your flows.",
+		"restoreMessage": "Successfully restored your flows. Check your flows for missing devices.",
+		"restoreTagInTitle": "[restored]",
+		"list": {
+			"folderInBackup": "Folder in back-up",
+			"flowTitle": "Flow title",
+			"folderToRestoreTo": "Folder to restore to",
+			"restoreAction": "Overwrite or create new",
+			"copyToNewFlow": "Copy to new flow",
+			"overwriteExistingFlow": "Overwrite existing flow"
+		}
+	}
+}

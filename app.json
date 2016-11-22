@@ -1,0 +1,23 @@
+{
+    "id": "nl.regoor.flowbackup",
+    "version": "1.0.0",
+    "compatibility": "0.x || 1.x",
+    "name": {
+        "nl": "Flow Backups",
+        "en": "Flow Backups"
+    },
+   	"description": {
+        "nl": "Maak backups van je flows, en zet ze terug.",
+        "en": "Make backups of your flows, and restore them."
+    },
+    "category": "tools",
+	"images": {
+		"large": "./assets/images/large.png",
+		"small": "./assets/images/small.png"
+	},
+    "author": {
+        "name": "Serge Regoor",
+        "email": "serge@regoor.nl"
+    },
+    "permissions": []
+}

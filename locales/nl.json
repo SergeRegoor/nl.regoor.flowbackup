@@ -1,0 +1,62 @@
+{
+	"title": "Flow back-ups",
+	
+	"warning": {
+		"title": "Waarschuwing",
+		"readMore": "Lees meer",
+		"shortText": "Het gebruik van deze app is op eigen risico.",
+		"longText": {
+			"line1": "Het gebruik van deze app is op eigen risico.",
+			"line2": "Er is nauwelijks een risico bij het maken van back-ups, maar bij het terugzetten van flows bestaat het risico wel.",
+			"line3": "De auteur van deze app levert geen ondersteuning wanneer flows corrupt raken.",
+			"line4": "Deze app kan niet bij je apparaten. Wanneer je een flow terugzet, kunnen missende en/of opnieuw toegevoegde apparaten leiden tot gebroken flows.",
+			"line5": "Athom ondersteunt deze manier van back-ups niet."
+		}
+	},
+	
+	"bearerToken": {
+		"title": "Bearer token",
+		"saveButton": "Bewaar",
+		"intro": "Volg de volgende stappen om de bearer token op te halen:",
+		"line1": "Click op de knop 'Mijn account' in het menu dat verschijnt wanneer je rechtsboven in dit scherm boven je naam zweeft.",
+		"line2": "Klik met de rechtermuisknop op de Homey, en kies de optie 'Kopieer link adres'.",
+		"line3": "Klik in het 'Bearer token' veld hierboven, en plak het gekopieerde adres middels CTRL-V.",
+		"line4": "Klik op de 'Bewaar' knop.",
+		"noteTitle": "Let op",
+		"note": "Als een verkeerde bearer token wordt opgegeven, zal je uit je Homey worden uitgelogd. Je zult dan opnieuw moeten inloggen.",
+		"enterTokenFirst": "Geef eerst een bearer token op."
+	},
+	
+	"close": "Sluiten",
+	"backupAllFlowsButton": "Back-up maken van alle flows",
+	"restoreFlowsButton": "Flows terugzetten",
+	"retrievalError": "Fout bij ophalen van je flows. Heb je de bearer token correct ingevuld?",
+	
+	"restore": {
+		"title": "Selecteer de flows uit je back-up die je wilt terugzetten",
+		"cancelButton": "Annuleer",
+		"restoreButton": "Terugzetten",
+		"readError": "Kan geen flows inlezen uit je bestand. Probeer het nogmaals.",
+		"noFlowsToRestoreError": "Je hebt geen flows geselecteerd om terug te zetten.",
+		"confirmRestorePart1": "Weet je zeker dat je ",
+		"confirmRestoreCreate": "[quantity] [flows] wilt aanmaken",
+		"confirmRestoreAnd": ", en ",
+		"confirmRestoreOverwrite": "[quantity] [flows] wilt overschrijven",
+		"confirmRestorePart2": "?",
+		"confirmRestoreFlows": "flows",
+		"confirmRestoreFlow": "flow",
+		"createError": "Fout bij aanmaken van [quantity] nieuwe flows. Er zijn geen flows teruggezet.",
+		"restoreErrorQty": "[quantity] flows konden niet teruggezet worden. Controleer zorgvuldig je flows.",
+		"restoreError": "Fout bij het terugzetten van je flows.",
+		"restoreMessage": "Je flows zijn succesvol teruggezet. Controleer je flows op missende apparaten.",
+		"restoreTagInTitle": "[teruggezet]",
+		"list": {
+			"folderInBackup": "Map in back-up",
+			"flowTitle": "Flow titel",
+			"folderToRestoreTo": "Terugzetten naar map",
+			"restoreAction": "Overschrijven of nieuwe aanmaken",
+			"copyToNewFlow": "Kopieer naar nieuwe flow",
+			"overwriteExistingFlow": "Overschrijf bestaande flow"
+		}
+	}
+}
