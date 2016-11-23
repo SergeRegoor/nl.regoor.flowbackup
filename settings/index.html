@@ -4,7 +4,11 @@
 		<script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
 		<script type="text/javascript" src="FileSaver.js"></script>
 		<script type="text/javascript" src="jszip.min.js"></script>
-		<script type="text/javascript" src="settings.js"></script>
+		<script type="text/javascript" src="homey-flows.js"></script>
+		<script type="text/javascript" src="homey-backup.js"></script>
+		<script type="text/javascript" src="homey-restore.js"></script>
+		<script type="text/javascript" src="client-restore.js"></script>
+		<script type="text/javascript" src="client-settings.js"></script>
  		<link type="text/css" rel="stylesheet" href="styles.css" media="screen" />
    </head>
     <body>
@@ -34,12 +38,20 @@
     	</fieldset>
     	<br class="clear" />
     	
+    	<!--<button id="buttonCopyFlows" data-i18n="copyFlowsButton"></button>-->
     	<button id="buttonBackupAllFlows" data-i18n="backupAllFlowsButton"></button>
     	<button id="buttonRestoreFlows" data-i18n="restoreFlowsButton"></button>
     	
     	<div id="restoreContainer">
     		<h2 data-i18n="restore.title"></h2>
-	    	<div id="restoreList"></div>
+    		<fieldset id="backUpInfo">
+    			<legend data-i18n="restore.backup.info"></legend>
+    			<label data-i18n="restore.backup.date"></label>
+    			<span id="backUpDate"></span>
+    			<label data-i18n="restore.backup.homeyName"></label>
+    			<span id="backUpHomeyName"></span>
+    		</fieldset>
+	    	<div id="restoreList" class="list"></div>
     		<button id="cancelRestoreButton" data-i18n="restore.cancelButton"></button>
     		<button id="performRestoreButton" data-i18n="restore.restoreButton"></button>
     	</div>

@@ -28,6 +28,7 @@
 	},
 	
 	"close": "Close",
+	"copyFlowsButton": "Duplicate flows",
 	"backupAllFlowsButton": "Back-up all flows",
 	"restoreFlowsButton": "Restore flows",
 	"retrievalError": "Error retrieving flows. Have you configured your bearer token correctly?",
@@ -50,6 +51,11 @@
 		"restoreError": "Error restoring your flows.",
 		"restoreMessage": "Successfully restored your flows. Check your flows for missing devices.",
 		"restoreTagInTitle": "[restored]",
+		"backup": {
+			"info": "Back-up info",
+			"date": "Back-up date",
+			"homeyName": "Source Homey"
+		},
 		"list": {
 			"folderInBackup": "Folder in back-up",
 			"flowTitle": "Flow title",

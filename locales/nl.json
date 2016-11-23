@@ -28,6 +28,7 @@
 	},
 	
 	"close": "Sluiten",
+	"copyFlowsButton": "Dupliceer flows",
 	"backupAllFlowsButton": "Back-up maken van alle flows",
 	"restoreFlowsButton": "Flows terugzetten",
 	"retrievalError": "Fout bij ophalen van je flows. Heb je de bearer token correct ingevuld?",
@@ -50,6 +51,11 @@
 		"restoreError": "Fout bij het terugzetten van je flows.",
 		"restoreMessage": "Je flows zijn succesvol teruggezet. Controleer je flows op missende apparaten.",
 		"restoreTagInTitle": "[teruggezet]",
+		"backup": {
+			"info": "Back-up info",
+			"date": "Back-up datum",
+			"homeyName": "Bron Homey"
+		},
 		"list": {
 			"folderInBackup": "Map in back-up",
 			"flowTitle": "Flow titel",

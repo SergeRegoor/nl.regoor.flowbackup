@@ -10,6 +10,9 @@
 #bearerTokenExplanation ol { margin:0 0 15px 15px; }
 
 #restoreContainer { display:none; margin:30px 0 15px 0; }
+#backUpInfo { width:250px; font-size:12px; margin:15px 0 5px 0; }
+#backUpInfo label { display:inline-block; line-height:15px; vertical-align:top; width:85px; }
+#backUpInfo span { display:inline-block; line-height:15px; vertical-align:top; }
 
 .list { width:100%; border-top:1px solid #c0c0c0; }
 .list .row { display:block; width:calc(100% - 2px); border:1px solid #c0c0c0; border-top:0; }

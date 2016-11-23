@@ -5,4 +5,6 @@ Warning: use this app at your own risk. The app is intended as a temporary solut
 
 # Revision history
 
+2016-11-23 - v1.0.1 - Added Homey name to backup set & file name
+
 2016-11-22 - v1.0.0 - Initial version
