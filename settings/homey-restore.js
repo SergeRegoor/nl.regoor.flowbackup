@@ -26,7 +26,7 @@ HomeyRestore.prototype.restoreFlows = function(flowsToRestore, callback) {
 				if (!result.successful)
 					callback(result);
 				else
-				_class._overwriteFlows(flowsToRestore.toCreate.concat(flowsToRestore.toOverwrite), function(result) { callback(result); });
+					_class._overwriteFlows(flowsToRestore.toCreate.concat(flowsToRestore.toOverwrite), function(result) { callback(result); });
 			});
 		} else
 			_class._overwriteFlows(flowsToRestore.toOverwrite, function(result) { callback(result); });

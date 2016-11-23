@@ -32,13 +32,15 @@ RestoreList.prototype.render = function(container) {
 		flowRow.append($('<div/>').addClass('cell flowTitle').text(backedUpFlow.title));
 		var folderSelectorCell = $('<div/>').addClass('cell');
 		flowRow.append(folderSelectorCell);
-		folderSelectorCell.addFolderSelector(backedUpFlow.folder);
+		_class.addFolderSelector(folderSelectorCell, backedUpFlow.folder);
 		flowRow.append($('<div/>').addClass('cell').append($('<input/>').attr('type','checkbox').addClass('shouldRestoreCheckBox').prop('checked',true).change(function(){
 			$(this).parent().parent().removeClass('disabled');
 			if (!$(this).prop('checked'))
 				$(this).parent().parent().addClass('disabled');
 		})));
-		flowRow.append($('<div/>').addClass('cell').addFlowActionSelector());
+		var flowActionCell = $('<div/>').addClass('cell');
+		flowRow.append(flowActionCell);
+		_class.addFlowActionSelector(flowActionCell);
 		flowRow.setFlowActions(true);
 	});
 	
@@ -86,8 +88,7 @@ RestoreList.prototype.getFlowsToRestore = function(container) {
 	};
 };
 
-$.fn.addFlowActionSelector = function() {
-	var container = $(this);
+RestoreList.prototype.addFlowActionSelector = function(container) {
 	var selector = $('<select/>').addClass('flowActionSelector');
 	container.append(selector);
 	selector.append($('<option/>').val('copyToNewFlow').text(__('restore.list.copyToNewFlow')));
@@ -95,18 +96,18 @@ $.fn.addFlowActionSelector = function() {
 	return container;
 };
 
-$.fn.addFolderSelector = function(selectedFolderId) {
-	var container = $(this);
+RestoreList.prototype.addFolderSelector = function(container, selectedFolderId) {
+	var _class = this;
 	var selector = $('<select/>').addClass('folderSelector');
 	container.append(selector);
 	selector.append($('<option/>').val('').text('/'));
-	selector.addFoldersToSelector(false, selectedFolderId, 0);
+	_class.addFoldersToSelector(selector, false, selectedFolderId, 0);
 	selector.change(function() { $(this).parent().parent().setFlowActions(false); });
 	return container;
 };
 
-$.fn.addFoldersToSelector = function(parentFolderId, selectedFolderId, level) {
-	var selector = $(this);
+RestoreList.prototype.addFoldersToSelector = function(selector, parentFolderId, selectedFolderId, level) {
+	var _class = this;
 	$.each(selector.parent().parent().parent().data('current')._folders, function(i, folder) {
 		if (folder.folder == parentFolderId) {
 			var description = '';
@@ -117,7 +118,7 @@ $.fn.addFoldersToSelector = function(parentFolderId, selectedFolderId, level) {
 			if (folder.id == selectedFolderId)
 				option.attr('selected', 'selected');
 			selector.append(option);
-			selector.addFoldersToSelector(folder.id, selectedFolderId, level+1);
+			_class.addFoldersToSelector(selector, folder.id, selectedFolderId, level+1);
 		}
 	});
 };

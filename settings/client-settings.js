@@ -5,7 +5,7 @@ function onHomeyReady() {
 
 $(document).ready(function(){
 	$('#buttonCopyFlows, #buttonBackupAllFlows, #buttonRestoreFlows, #bearerTokenExplanation').hide();
-	$('#fieldSetWarning button').click(function() { showErrorMessagesWithSelector($('#warningMessages').html(), 550, 300); });
+	$('#fieldSetWarning button').click(function() { showPopupWithSelector($('#warningMessages').html(), 550, 300); });
 	$('#buttonSaveBearerToken').click(function() {
 		setBearerToken($('#textBearerToken').val(), true);
 	});
@@ -52,6 +52,32 @@ $(document).ready(function(){
 					showErrorMessages(result.errorMessage || [__('restore.restoreError')]);
 				else
 					showErrorMessage(__('restore.restoreMessage'));
+			});
+		});
+	});
+	$('#buttonCopyFlows').click(function() {
+		getHomeyFlows(function(homeyFlows) {
+			var popupContainer = $('<div/>');
+			var popup = showPopupWithSelector(popupContainer, 500, 350);
+			var flowCopy = new FlowCopy(homeyFlows);
+			flowCopy.addFolderSelector(popupContainer, null, function(selectedFolderId) {
+				var flowList = flowCopy.addFlowList(popupContainer, selectedFolderId);
+				flowCopy.addDestinationFolderSelector(popupContainer, selectedFolderId, function(destinationFolderId) {
+					var flowIds = flowCopy.getSelectedFlowsIdsFromList(flowList);
+					if ((flowIds == null) || (flowIds.length == 0))
+						showErrorMessage(__('copy.noFlowsSelectedError'));
+					else {
+						if (!confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
+						flowCopy.copyFlowsTo(flowIds, destinationFolderId, function(result) {
+							if (!result.successful)
+								showErrorMessages(result.errorMessages);
+							else {
+								popup.closePopup();
+								showErrorMessage(__('copy.copiedMessage'));
+							}
+						});
+					}
+				});
 			});
 		});
 	});
@@ -144,7 +170,7 @@ $.fn.closePopup = function(){
 };
 
 function showErrorMessage(errorMessage, popupWidth, popupHeight) {
-	showErrorMessages([errorMessage]);
+	return showErrorMessages([errorMessage]);
 };
 
 function showErrorMessages(errorMessages, popupWidth, popupHeight) {
@@ -158,10 +184,10 @@ function showErrorMessages(errorMessages, popupWidth, popupHeight) {
 		});
 		errorContainer.append(errorList);
 	}
-	showErrorMessagesWithSelector(errorContainer, popupWidth, popupHeight);
+	return showPopupWithSelector(errorContainer, popupWidth, popupHeight);
 }
 
-function showErrorMessagesWithSelector(selector, popupWidth, popupHeight) {
+function showPopupWithSelector(selector, popupWidth, popupHeight) {
 	if (popupWidth == null)
 		popupWidth = 300;
 	if (popupHeight == null)
@@ -171,4 +197,5 @@ function showErrorMessagesWithSelector(selector, popupWidth, popupHeight) {
 	var bottomBar = $('<div/>').addClass('bottomButtonBar');
 	bottomBar.append($('<button/>').addClass('floatRight').text(__('close')).click(function(e) { popupContainer.closePopup(); }));
 	popupContainer.append(bottomBar);
+	return popupContainer;
 }

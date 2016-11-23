@@ -28,7 +28,7 @@
 	},
 	
 	"close": "Sluiten",
-	"copyFlowsButton": "Dupliceer flows",
+	"copyFlowsButton": "Kopi&euml;er flows",
 	"backupAllFlowsButton": "Back-up maken van alle flows",
 	"restoreFlowsButton": "Flows terugzetten",
 	"retrievalError": "Fout bij ophalen van je flows. Heb je de bearer token correct ingevuld?",
@@ -64,5 +64,16 @@
 			"copyToNewFlow": "Kopieer naar nieuwe flow",
 			"overwriteExistingFlow": "Overschrijf bestaande flow"
 		}
+	},
+	
+	"copy": {
+		"selectSourceFolder": "Kies de map van waaruit je flows wilt kopi&euml;ren.",
+		"selectDestinationFolder": "Kies de map waar je de geselecteerde flows naartoe wilt kopi&euml;ren.",
+		"copyButton": "Kopi&euml;er flow(s)",
+		"couldNotFindFlowsError": "Kon niet alle geselecteerde flows vinden.",
+		"copyPrefix": "[kopie]",
+		"noFlowsSelectedError": "Je hebt geen flows geselecteerd om te kopi&euml;ren.",
+		"copyConfirmation": "Weet je zeker dat je [quantity] flows wilt gaan kopieren?",
+		"copiedMessage": "Je flows zijn gekopi&euml;erd."
 	}
 }

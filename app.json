@@ -1,6 +1,6 @@
 {
     "id": "nl.regoor.flowbackup",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "compatibility": "0.x || 1.x",
     "name": {
         "nl": "Flow Backups",

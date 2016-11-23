@@ -12,8 +12,8 @@ HomeyBackUp.prototype.createFullBackUp = function(callback) {
 	}));
 	zip.file('folders.json', JSON.stringify(this._homeyFlows._folders));
 	zip.file('flows.json', JSON.stringify(this._homeyFlows._flows));
-	zip.generateAsync({type:'blob'}).then(function(content) {
-		callback(content);
+	zip.generateAsync({type:'blob', compression:'deflate', compressionOptions:{level:9}}).then(function(zipContents) {
+		callback(zipContents);
 	});
 };
 
@@ -24,7 +24,9 @@ HomeyBackUp.prototype.readBackUpFile = function(selectedFile, callback) {
 		var folders = null;
 		var flows = null;
 		setTimeout(function() { if ((backUpInfo == null) || (folders == null) || (flows == null)) { callback(null); } }, 1000);
-		JSZip.loadAsync(String.fromCharCode.apply(null, new Uint8Array(this.result))).then(function(zip) {
+		var byteArray = new Uint8Array(this.result);
+		var stringArray = Uint8ToString(byteArray);
+		JSZip.loadAsync(stringArray).then(function(zip) {
 			zip.forEach(function(relativePath, zipEntry) {
 				zipEntry.async('string').then(function(content) {
 					if (zipEntry.name.toLowerCase() == 'backupinfo.json')
@@ -42,6 +44,15 @@ HomeyBackUp.prototype.readBackUpFile = function(selectedFile, callback) {
 	}
 	reader.readAsArrayBuffer(selectedFile);
 };
+
+function Uint8ToString(u8a){
+	var CHUNK_SZ = 0x8000;
+	var c = [];
+	for (var i=0; i < u8a.length; i+=CHUNK_SZ) {
+		c.push(String.fromCharCode.apply(null, u8a.subarray(i, i+CHUNK_SZ)));
+	}
+	return c.join("");
+}
 
 var BackUp = function(info, folders, flows) {
 	this.info = info;

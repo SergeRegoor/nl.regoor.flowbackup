@@ -64,5 +64,16 @@
 			"copyToNewFlow": "Copy to new flow",
 			"overwriteExistingFlow": "Overwrite existing flow"
 		}
+	},
+	
+	"copy": {
+		"selectSourceFolder": "Select the folder you want to copy flows from.",
+		"selectDestinationFolder": "Select the destination folder you want to copy the selected flows to.",
+		"copyButton": "Copy flow(s)",
+		"couldNotFindFlowsError": "Could not find all selected flows.",
+		"copyPrefix": "[copy]",
+		"noFlowsSelectedError": "You have not selected any flows to copy.",
+		"copyConfirmation": "Are you sure you want to copy [quantity] flows?",
+		"copiedMessage": "Your flows have been copied."
 	}
 }
