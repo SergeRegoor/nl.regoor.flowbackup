@@ -1,1 +1,0 @@
-athom project --run
