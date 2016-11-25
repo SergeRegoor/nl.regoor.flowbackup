@@ -1,27 +1,27 @@
 function onHomeyReady() {
-	Homey.get('bearerToken', function(error, bearerToken){ setBearerToken(bearerToken, false); });
+	Homey.get('bearerToken', (error, bearerToken) => { setBearerToken(bearerToken, false); });
 	Homey.ready();
 };
 
-$(document).ready(function(){
+$(document).ready(() => {
 	$('#buttonCopyFlows, #buttonBackupAllFlows, #buttonRestoreFlows, #bearerTokenExplanation').hide();
-	$('#fieldSetWarning button').click(function() { showPopupWithSelector($('#warningMessages').html(), 550, 300); });
-	$('#buttonSaveBearerToken').click(function() {
+	$('#fieldSetWarning button').click(() => { showPopupWithSelector($('#warningMessages').html(), 550, 300); });
+	$('#buttonSaveBearerToken').click(() => {
 		setBearerToken($('#textBearerToken').val(), true);
 	});
-	$('#buttonBackupAllFlows').click(function() {
-		getHomeyFlows(function(homeyFlows) {
+	$('#buttonBackupAllFlows').click(() => {
+		getHomeyFlows((homeyFlows) => {
 			var homeyBackUp = new HomeyBackUp(homeyFlows);
-			homeyBackUp.createFullBackUp(function(backUpContent) {
+			homeyBackUp.createFullBackUp((backUpContent) => {
 				saveAs(backUpContent, homeyFlows.getHomeyName()+'-flow-backup-'+new Date().toCleanString()+'.zip');
 			});
 		});
 	});
-	$('#buttonRestoreFlows').click(function() {
-		selectLocalFile(function(selectedFile) {
-			getHomeyFlows(function(homeyFlows) {
+	$('#buttonRestoreFlows').click(() => {
+		selectLocalFile((selectedFile) => {
+			getHomeyFlows((homeyFlows) => {
 				var homeyBackUp = new HomeyBackUp(homeyFlows);
-				homeyBackUp.readBackUpFile(selectedFile, function(backUp) {
+				homeyBackUp.readBackUpFile(selectedFile, (backUp) => {
 					if (backUp == null)
 						showErrorMessage(__('restore.readError'));
 					else {
@@ -39,13 +39,13 @@ $(document).ready(function(){
 			});
 		});
 	});
-	$('#cancelRestoreButton').click(function() { $('#restoreList').empty(); $('#restoreContainer').hide(); });
-	$('#performRestoreButton').click(function() {
-		getHomeyFlows(function(homeyFlows) {
+	$('#cancelRestoreButton').click(() => { $('#restoreList').empty(); $('#restoreContainer').hide(); });
+	$('#performRestoreButton').click(() => {
+		getHomeyFlows((homeyFlows) => {
 			var restoreList = new RestoreList(homeyFlows, $('#restoreList').data('backUp'));
 			var flowsToRestore = restoreList.getFlowsToRestore($('#restoreList'));
 			var homeyRestore = new HomeyRestore(homeyFlows);
-			homeyRestore.restoreFlows(flowsToRestore, function(result) {
+			homeyRestore.restoreFlows(flowsToRestore, (result) => {
 				$('#cancelRestoreButton').trigger('click');
 				if (result == null) result = {successful:false};
 				if (!result.successful)
@@ -55,20 +55,20 @@ $(document).ready(function(){
 			});
 		});
 	});
-	$('#buttonCopyFlows').click(function() {
-		getHomeyFlows(function(homeyFlows) {
+	$('#buttonCopyFlows').click(() => {
+		getHomeyFlows((homeyFlows) => {
 			var popupContainer = $('<div/>');
 			var popup = showPopupWithSelector(popupContainer, 500, 350);
 			var flowCopy = new FlowCopy(homeyFlows);
-			flowCopy.addFolderSelector(popupContainer, null, function(selectedFolderId) {
+			flowCopy.addFolderSelector(popupContainer, null, (selectedFolderId) => {
 				var flowList = flowCopy.addFlowList(popupContainer, selectedFolderId);
-				flowCopy.addDestinationFolderSelector(popupContainer, selectedFolderId, function(destinationFolderId) {
+				flowCopy.addDestinationFolderSelector(popupContainer, selectedFolderId, (destinationFolderId) => {
 					var flowIds = flowCopy.getSelectedFlowsIdsFromList(flowList);
 					if ((flowIds == null) || (flowIds.length == 0))
 						showErrorMessage(__('copy.noFlowsSelectedError'));
 					else {
 						if (!confirm(__('copy.copyConfirmation').replace('[quantity]', flowIds.length))) return;
-						flowCopy.copyFlowsTo(flowIds, destinationFolderId, function(result) {
+						flowCopy.copyFlowsTo(flowIds, destinationFolderId, (result) => {
 							if (!result.successful)
 								showErrorMessages(result.errorMessages);
 							else {
@@ -107,7 +107,7 @@ function setBearerToken(bearerToken, fromInput) {
 
 function getHomeyFlows(callback) {
 	var homeyFlows = new HomeyFlows($('#textBearerToken').val());
-	$.when(homeyFlows.isReady).done(function() {
+	$.when(homeyFlows.isReady).done(() => {
 		if (!homeyFlows.isOk())
 			showErrorMessage(homeyFlows.errorMessage);
 		else
@@ -117,7 +117,7 @@ function getHomeyFlows(callback) {
 
 function selectLocalFile(callback) {
 	var fileSelector = $('<input/>').attr('type', 'file');
-	fileSelector.change(function(e){
+	fileSelector.change((e) => {
 		var selectedFile = fileSelector.prop('files')[0];
 		callback(selectedFile);
 	});
@@ -128,7 +128,7 @@ Date.prototype.toCleanString = function() {
 	var localTime = new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000));
 	var dateString = localTime.toISOString();
 	var invalidChars = ['-', ':', 'Z', '.'];
-	$.each(invalidChars, function(i, invalidChar) {
+	$.each(invalidChars, (i, invalidChar) => {
 		while (dateString.indexOf(invalidChar) >= 0)
 			dateString = dateString.replace(invalidChar, '');
 	});
@@ -136,7 +136,7 @@ Date.prototype.toCleanString = function() {
 };
 
 function createGuid() { 
-	var s4 = function() { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); };
+	var s4 = () => { return (((1+Math.random())*0x10000)|0).toString(16).substring(1); };
 	return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0,3) + "-" + s4() + "-" + s4() + s4() + s4()).toLowerCase();
 };
 
@@ -148,7 +148,7 @@ function loadPopup(id, selector, zIndex, positionTop, width, height){
 	var popupContainer = $('<div>').addClass('popupContainer').attr('id', id);
 	if (selector != null)
 		popupContainer.html(selector.html());
-	popupContainer.find('.closePopup').click(function(){ popupContainer.closePopup(); });
+	popupContainer.find('.closePopup').click(() => { popupContainer.closePopup(); });
 	popupContainer.css('z-index', zIndex);
 	popupContainer.css('top', positionTop + 'px');
 	popupContainer.css('width', 'calc('+width+'px - 40px)');
@@ -179,7 +179,7 @@ function showErrorMessages(errorMessages, popupWidth, popupHeight) {
 		errorContainer.append($('<p/>').addClass('errorMessages').html(errorMessages[0]));
 	} else {
 		errorList = $('<ul/>').addClass('errorMessages');
-		$.each(errorMessages, function(i, errorMessage) {
+		$.each(errorMessages, (i, errorMessage) => {
 			errorList.append($('<li/>').text(errorMessage));
 		});
 		errorContainer.append(errorList);
@@ -195,7 +195,7 @@ function showPopupWithSelector(selector, popupWidth, popupHeight) {
 	var popupContainer = loadPopup(createGuid(), null, 9999, 100, popupWidth, popupHeight);
 	popupContainer.append(selector);
 	var bottomBar = $('<div/>').addClass('bottomButtonBar');
-	bottomBar.append($('<button/>').addClass('floatRight').text(__('close')).click(function(e) { popupContainer.closePopup(); }));
+	bottomBar.append($('<button/>').addClass('floatRight').text(__('close')).click((e) => { popupContainer.closePopup(); }));
 	popupContainer.append(bottomBar);
 	return popupContainer;
 }
